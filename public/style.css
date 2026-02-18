@@ -2,7 +2,6 @@
     --bg-color: #000000;
     --text-color: #ffffff;
     --accent-color: #e8b46f;
-    /* Gold for luxury feel */
     --input-bg: #1a1a1a;
     --input-border: #333333;
 }
@@ -24,6 +23,7 @@ body {
     justify-content: center;
     line-height: 1.6;
 }
+
 .container {
     width: 100%;
     max-width: 1200px;
@@ -33,7 +33,6 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    /* Center vertically in the avail space */
     align-items: center;
 }
 
@@ -44,11 +43,9 @@ body {
 }
 
 .logo-text {
-    font-family: 'Playfair Display', serif;
     font-size: 2.5rem;
     font-weight: 600;
     color: var(--text-color);
-    /* White */
     letter-spacing: 2px;
     text-transform: uppercase;
 }
@@ -65,7 +62,6 @@ body {
 .form-wrapper {
     width: 100%;
     background: rgba(255, 255, 255, 0.05);
-    /* Glass effect */
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 12px;
@@ -78,13 +74,11 @@ body {
 
 .form-header {
     margin-bottom: 1.5rem;
-    font-family: 'Playfair Display', serif;
     font-size: 1.5rem;
     color: var(--accent-color);
 }
 
 .mylimobiz-placeholder {
-    /* Simulating where the widget would go */
     display: flex;
     flex-direction: column;
     gap: 1rem;
@@ -150,8 +144,8 @@ body {
 .contact-info {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
-    font-size: 0.9rem;
+    gap: 1rem;
+    font-size: 1.1rem;
     color: #888;
 }
 
@@ -166,6 +160,8 @@ body {
     color: var(--text-color);
     text-decoration: none;
     transition: color 0.3s;
+    font-size: 1.3rem;
+    font-weight: 600;
 }
 
 .contact-item a:hover {
@@ -213,5 +209,216 @@ body {
         flex-direction: row;
         justify-content: center;
         gap: 2rem;
+    }
+}
+
+/* Preloader Styles */
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--bg-color);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+}
+
+.loader-content {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Logo in the center */
+.loader-logo {
+    max-width: 100px;
+    max-height: 100px;
+    animation: preloaderPulse 2.5s infinite ease-in-out;
+    z-index: 10;
+}
+
+/* Spinner Circles */
+.loader-circle {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 1px solid transparent;
+    border-top-color: var(--accent-color);
+    border-radius: 50%;
+    animation: spin 1.5s linear infinite;
+}
+
+.loader-circle:before {
+    content: "";
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    right: 15px;
+    bottom: 15px;
+    border: 1px solid transparent;
+    border-top-color: rgba(232, 180, 111, 0.5);
+    border-radius: 50%;
+    animation: spin 3s linear infinite reverse;
+}
+
+.loader-circle:after {
+    content: "";
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    right: 30px;
+    bottom: 30px;
+    border: 1px solid transparent;
+    border-top-color: rgba(232, 180, 111, 0.3);
+    border-radius: 50%;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes preloaderPulse {
+    0% {
+        transform: scale(0.95);
+        opacity: 0.85;
+    }
+
+    50% {
+        transform: scale(1.05);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(0.95);
+        opacity: 0.85;
+    }
+}
+
+body.loaded #preloader {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+/* Floating Call Button */
+.floating-call-btn {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background-color: var(--accent-color);
+    color: #000;
+    padding: 12px 24px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(232, 180, 111, 0.4);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    z-index: 1000;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: bounceIn 1s ease-out 1s backwards;
+}
+
+.floating-call-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(232, 180, 111, 0.6);
+    color: #000;
+}
+
+.call-icon {
+    font-size: 1.2rem;
+}
+
+.call-text {
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+@keyframes bounceIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.3) translateY(100px);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.05) translateY(-10px);
+    }
+
+    70% {
+        transform: scale(0.9) translateY(5px);
+    }
+
+    100% {
+        transform: scale(1) translateY(0);
+    }
+}
+
+@media (max-width: 425px) {
+    .container {
+        padding: 1rem;
+    }
+
+    .form-wrapper {
+        padding: 1.5rem 1rem;
+        margin-top: 1.5rem;
+        margin-bottom: 1.5rem;
+        border-radius: 8px;
+    }
+
+    .form-header {
+        font-size: 1.3rem;
+        margin-bottom: 1rem;
+    }
+
+    .contact-item {
+        flex-direction: column;
+        gap: 0.2rem;
+    }
+
+    .contact-item a {
+        font-size: 1.1rem;
+        word-break: break-all;
+    }
+
+    .logo-text {
+        font-size: 1.8rem;
+    }
+
+    .floating-call-btn {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        padding: 0;
+        justify-content: center;
+        left: 15px;
+        bottom: 15px;
+    }
+
+    .floating-call-btn .call-text {
+        display: none;
+    }
+
+    .floating-call-btn .call-icon {
+        font-size: 1.4rem;
+        margin: 0;
     }
 }
